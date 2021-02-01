@@ -8,6 +8,7 @@ import { AssetsComponent } from './assets/assets.component';
 import { HomeComponent } from './home/home.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
