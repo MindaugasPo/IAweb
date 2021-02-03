@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend.service';
+import { AssetDto } from '../dto';
 
 @Component({
   selector: 'app-assets',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent implements OnInit {
+  assets: AssetDto[];
 
-  constructor() { }
+  constructor(
+    private backend: BackendService
+  ) {
+    this.assets = [];
+  }
 
   ngOnInit(): void {
+    this.backend.getAssets().subscribe(x => this.assets = x);
   }
 
 }
