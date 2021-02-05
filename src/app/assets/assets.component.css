@@ -1,0 +1,21 @@
+.asset-controls,
+.assets-container {
+  padding: 15px;
+}
+.asset-controls button {
+  cursor: pointer;
+  border-radius: 0px;
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+table,td,th {
+  border: 1px solid;
+}
+th {
+  height: 50px;
+}

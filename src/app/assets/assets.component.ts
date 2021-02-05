@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
-import { AssetDto } from '../dto';
+import { AssetDto, AssetType} from '../dto';
 
 @Component({
   selector: 'app-assets',
@@ -9,6 +9,7 @@ import { AssetDto } from '../dto';
 })
 export class AssetsComponent implements OnInit {
   assets: AssetDto[];
+  AssetType = AssetType;
 
   constructor(
     private backend: BackendService

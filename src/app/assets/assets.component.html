@@ -1,5 +1,24 @@
-<p>assets works!</p>
+ <div class="asset-controls">
+  <button>New asset</button>
+</div>
 
-<ul>
-  <li *ngFor="let a of assets"><span>ID: {{ a.id }}, title: {{ a.title }}</span></li>
-</ul>
+<div class="assets-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Ticker</th>
+        <th>Type</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asset of assets">
+        <td><span>{{ asset.title }}</span></td>
+        <td><span>{{ asset.ticker }}</span></td>
+        <td><span>{{ AssetType[asset.assetType] }}</span></td>
+        <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
