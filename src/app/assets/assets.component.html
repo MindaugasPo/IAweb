@@ -1,8 +1,30 @@
- <div class="asset-controls">
-  <button>New asset</button>
-</div>
-
 <div class="assets-container">
+  <div id="create-asset-container">
+    <form [formGroup]="newAsset" (ngSubmit)="createClick()">
+      <div>
+        <label>Title</label>
+        <input it="title" type="text" formControlName="title">
+        <div *ngIf="newAssetSubmitted && f.title.errors">
+          <div *ngIf="f.title.errors.required">Title is required</div>
+        </div>
+      </div>
+      <div>
+        <label>Ticker</label>
+        <input it="ticker" type="text" formControlName="ticker">
+        <div *ngIf="newAssetSubmitted && f.ticker.errors">
+          <div *ngIf="f.ticker.errors.required">Ticker is required</div>
+        </div>
+      </div>
+      <div>
+        <label>Asset type</label>
+        <input it="asset-type" type="text" formControlName="assetType">
+        <div *ngIf="newAssetSubmitted && f.assetType.errors">
+          <div *ngIf="f.assetType.errors.required">Asset type is required</div>
+        </div>
+      </div>
+      <button type="submit">Create new asset</button>
+    </form>
+  </div>
   <table>
     <thead>
       <tr>
@@ -10,6 +32,7 @@
         <th>Ticker</th>
         <th>Type</th>
         <th>Created</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +41,7 @@
         <td><span>{{ asset.ticker }}</span></td>
         <td><span>{{ AssetType[asset.assetType] }}</span></td>
         <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
+        <td>Edit</td>
       </tr>
     </tbody>
   </table>
