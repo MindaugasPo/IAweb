@@ -1,8 +1,6 @@
-export enum AssetType
-{
-    Stock = 1,
-    Bond = 2,
-    Commodity = 3
+export interface AssetType{
+  id: number;
+  name: string;
 }
 export interface AssetDto {
   id: string

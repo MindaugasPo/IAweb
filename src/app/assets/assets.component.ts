@@ -10,14 +10,14 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./assets.component.css']
 })
 export class AssetsComponent implements OnInit {
-  AssetType = AssetType;
-  assets: AssetDto[] = [];
+  backendAssets: AssetDto[] = [];
   newAssetSubmitted = false;
+  assetTypes: AssetType[] = this.getAssetTypes();
 
   newAsset = new FormGroup({
     title: new FormControl('', Validators.required),
     ticker: new FormControl('', Validators.required),
-    assetType: new FormControl('', Validators.required)
+    assetType: new FormControl(null, Validators.required)
   });
   createCreated: Date = new Date;
 
@@ -27,15 +27,25 @@ export class AssetsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.backend.getAssets().subscribe(x => this.assets = x);
+    this.backend.getAssets().subscribe(x => this.backendAssets = x);
   }
 
   createClick(): void {
     this.newAssetSubmitted = true;
-    console.log("submitting...");
+    console.log("form:");
+    console.log(this.newAsset.value);
   }
 
   get f(){
     return this.newAsset.controls;
+  }
+
+  getAssetTypes(): AssetType[]{
+    // this method shouldn't be in this class
+    return [
+      { id: 1, name: "stock" },
+      { id: 2, name: "bond" },
+      { id: 3, name: "commodity" }
+    ]
   }
 }
