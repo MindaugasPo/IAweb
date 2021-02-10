@@ -7,5 +7,5 @@ export interface AssetDto {
   createdDateUtc: Date,
   title: string,
   ticker: string,
-  assetType: AssetType
+  assetType: number
 }

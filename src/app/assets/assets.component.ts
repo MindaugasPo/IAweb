@@ -57,4 +57,7 @@ export class AssetsComponent implements OnInit {
       { id: 3, name: "commodity" }
     ]
   }
+  getAssetTypeName(id: number): string{
+    return this.assetTypes.find(x => x.id == id)?.name ?? '';
+  }
 }
