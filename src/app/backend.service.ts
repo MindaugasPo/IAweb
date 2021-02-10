@@ -23,6 +23,13 @@ export class BackendService {
       );;
   }
 
+  createAsset(newAsset: AssetDto): Observable<AssetDto>{
+    return this.http.post<AssetDto>(this.assetsUrl, newAsset, {})
+      .pipe(
+        catchError(this.handleError<AssetDto>('createAsset', {} as AssetDto))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

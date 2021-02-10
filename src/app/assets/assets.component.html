@@ -1,6 +1,6 @@
 <div class="assets-container">
   <div id="create-asset-container">
-    <form [formGroup]="newAsset" (ngSubmit)="createClick()">
+    <form [formGroup]="newAsset" (ngSubmit)="submitForm()">
       <div>
         <label>Title</label>
         <input it="title" type="text" formControlName="title">
@@ -24,7 +24,7 @@
           <div *ngIf="f.assetType.errors.required">Asset type is required</div>
         </div>
       </div>
-      <button type="submit">Create new asset</button>
+      <button type="submit" [disabled]="!newAsset.valid">Create new asset</button>
     </form>
   </div>
   <table>

@@ -30,10 +30,19 @@ export class AssetsComponent implements OnInit {
     this.backend.getAssets().subscribe(x => this.backendAssets = x);
   }
 
-  createClick(): void {
+  submitForm(): void {
     this.newAssetSubmitted = true;
-    console.log("form:");
-    console.log(this.newAsset.value);
+    if (this.newAsset.valid){
+      this.backend
+        .createAsset(this.newAsset.value)
+        .subscribe(
+          x => this.backendAssets.push(x),
+          err => console.error('submit new asset error: ' + err),
+          () => {
+            this.newAsset.reset();
+            this.newAssetSubmitted = false;
+          });
+    }
   }
 
   get f(){
