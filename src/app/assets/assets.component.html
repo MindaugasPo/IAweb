@@ -1,50 +1,58 @@
-<div class="assets-container">
-  <div id="create-asset-container">
-    <form [formGroup]="newAsset" (ngSubmit)="submitForm()">
-      <div>
-        <label>Title</label>
-        <input it="title" type="text" formControlName="title">
-        <div *ngIf="newAssetSubmitted && f.title.errors">
-          <div *ngIf="f.title.errors.required">Title is required</div>
+<div id="assets-container">
+  <div id="create-asset-container" class="row">
+    <div class="col-12">
+      <form [formGroup]="newAsset" (ngSubmit)="submitForm()" class="row">
+        <div class="form-group col-3">
+          <label>Title</label>
+          <input it="title" class="form-control" type="text" formControlName="title">
+          <div *ngIf="newAssetSubmitted && f.title.errors">
+            <div *ngIf="f.title.errors.required">Title is required</div>
+          </div>
         </div>
-      </div>
-      <div>
-        <label>Ticker</label>
-        <input it="ticker" type="text" formControlName="ticker">
-        <div *ngIf="newAssetSubmitted && f.ticker.errors">
-          <div *ngIf="f.ticker.errors.required">Ticker is required</div>
+        <div class="form-group col-3">
+          <label>Ticker</label>
+          <input it="ticker" class="form-control" type="text" formControlName="ticker">
+          <div *ngIf="newAssetSubmitted && f.ticker.errors">
+            <div *ngIf="f.ticker.errors.required">Ticker is required</div>
+          </div>
         </div>
-      </div>
-      <div>
-        <label>Asset type</label>
-        <select formControlName="assetType">
-          <option *ngFor="let type of assetTypes" [ngValue]="type.id">{{ type.name }}</option>
-        </select>
-        <div *ngIf="newAssetSubmitted && f.assetType.errors">
-          <div *ngIf="f.assetType.errors.required">Asset type is required</div>
+        <div class="form-group col-3">
+          <label>Asset type</label>
+          <select formControlName="assetType" class="form-control">
+            <option *ngFor="let type of assetTypes" [ngValue]="type.id">{{ type.name }}</option>
+          </select>
+          <div *ngIf="newAssetSubmitted && f.assetType.errors">
+            <div *ngIf="f.assetType.errors.required">Asset type is required</div>
+          </div>
         </div>
-      </div>
-      <button type="submit" [disabled]="!newAsset.valid">Create new asset</button>
-    </form>
+        <div class="col-3 submit-container">
+          <button type="submit" class="btn btn-primary" [disabled]="!newAsset.valid">Create new asset</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Ticker</th>
-        <th>Type</th>
-        <th>Created</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let asset of backendAssets">
-        <td><span>{{ asset.title }}</span></td>
-        <td><span>{{ asset.ticker }}</span></td>
-        <td><span>{{ asset.assetType.name }}</span></td>
-        <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
-        <td>Edit</td>
-      </tr>
-    </tbody>
-  </table>
+  <div id="all-assets-container" class=row>
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Ticker</th>
+            <th>Type</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of backendAssets">
+            <td><span>{{ asset.title }}</span></td>
+            <td><span>{{ asset.ticker }}</span></td>
+            <td><span>{{ asset.assetType.name }}</span></td>
+            <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
+            <td>Edit</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
