@@ -30,6 +30,13 @@ export class BackendService {
       );
   }
 
+  deleteAsset(id: string): Observable<{}> {
+    return this.http.delete<string>(this.assetsUrl + '?id=' + id)
+      .pipe(
+        catchError(this.handleError<AssetDto>('deleteAsset'))
+    );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

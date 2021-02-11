@@ -60,4 +60,16 @@ export class AssetsComponent implements OnInit {
   getAssetTypeName(id: number): string{
     return this.assetTypes.find(x => x.id == id)?.name ?? '';
   }
+  deleteAsset(id: string){
+    this.backend.deleteAsset(id).subscribe(
+      () => {},
+      err => console.error('delete asset error: ' + err),
+      () => {
+        let ind = this.backendAssets.findIndex(x => x.id == id);
+        if (ind > -1){
+          this.backendAssets.splice(ind, 1);
+        }
+      }
+    );
+  }
 }

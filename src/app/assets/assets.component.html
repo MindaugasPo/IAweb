@@ -49,7 +49,9 @@
             <td><span>{{ asset.ticker }}</span></td>
             <td><span>{{ getAssetTypeName(asset.assetType) }}</span></td>
             <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
-            <td>Edit</td>
+            <td>
+              <button type="button" class="btn btn-link" (click)="deleteAsset(asset.id)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
