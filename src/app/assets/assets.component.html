@@ -2,21 +2,21 @@
   <div id="create-asset-container" class="row">
     <div class="col-12">
       <form [formGroup]="newAsset" (ngSubmit)="submitForm()" class="row">
-        <div class="form-group col-3">
+        <div class="form-group col-lg-3 col-md-12">
           <label>Title</label>
           <input it="title" class="form-control" type="text" formControlName="title">
           <div *ngIf="newAssetSubmitted && f.title.errors">
             <div *ngIf="f.title.errors.required">Title is required</div>
           </div>
         </div>
-        <div class="form-group col-3">
+        <div class="form-group col-lg-3 col-md-12">
           <label>Ticker</label>
           <input it="ticker" class="form-control" type="text" formControlName="ticker">
           <div *ngIf="newAssetSubmitted && f.ticker.errors">
             <div *ngIf="f.ticker.errors.required">Ticker is required</div>
           </div>
         </div>
-        <div class="form-group col-3">
+        <div class="form-group col-lg-3 col-md-12">
           <label>Asset type</label>
           <select formControlName="assetType" class="form-control">
             <option *ngFor="let type of assetTypes" [ngValue]="type.id">{{ type.name }}</option>
@@ -25,7 +25,7 @@
             <div *ngIf="f.assetType.errors.required">Asset type is required</div>
           </div>
         </div>
-        <div class="col-3 submit-container">
+        <div class="col-lg-3 col-md-12 submit-container">
           <button type="submit" class="btn btn-primary" [disabled]="!newAsset.valid">Create new asset</button>
         </div>
       </form>

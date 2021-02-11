@@ -1,11 +1,26 @@
-<div id="main-menu-container">
-    <ul class="menu">
-        <li><a [routerLink]="['/']">IA</a></li>
-        <li><a [routerLink]="['/assets']">Assets</a></li>
-        <li><a [routerLink]="['/transactions']">Transactions</a></li>
-        <li><a [routerLink]="['/portfolio']">Portfolio</a></li>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" [routerLink]="['/']">I-A</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/assets']">Assets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/transactions']">Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/portfolio']">Portfolio</a>
+      </li>
+
     </ul>
-    <ul class="login">
-        <li><a>Login</a></li>
-    </ul>
-</div>
+  </div>
+</nav>
