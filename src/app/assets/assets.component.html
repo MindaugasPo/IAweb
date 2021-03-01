@@ -1,4 +1,17 @@
 <div id="assets-container">
+  <div id="search-asset-container" class="row">
+    <div class="col-12">
+      <form class="row">
+        <div class="col-9">
+          <input it="search-string" class="form-control" type="text">
+        </div>
+        <div class="col-3 submit-container">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="create-asset-container" class="row">
     <div class="col-12">
       <form [formGroup]="newAsset" (ngSubmit)="submitForm()" class="row">
@@ -26,7 +39,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-12 submit-container">
-          <button type="submit" class="btn btn-primary" [disabled]="!newAsset.valid">Create new asset</button>
+          <button type="submit" class="btn btn-primary new-asset" [disabled]="!newAsset.valid">Create new asset</button>
         </div>
       </form>
     </div>
@@ -50,7 +63,6 @@
             <td><span>{{ getAssetTypeName(asset.assetType) }}</span></td>
             <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
             <td>
-              <button type="button" class="btn btn-link" >Edit</button>
               <button type="button" class="btn btn-link" (click)="deleteAsset(asset.id)">Delete</button>
             </td>
           </tr>
