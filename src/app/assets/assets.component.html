@@ -1,32 +1,19 @@
 <div id="assets-container">
-  <div id="search-asset-container" class="row">
-    <div class="col-12">
-      <form class="row">
-        <div class="col-9">
-          <input it="search-string" class="form-control" type="text">
-        </div>
-        <div class="col-3 submit-container">
-          <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <div id="create-asset-container" class="row">
     <div class="col-12">
-      <form [formGroup]="newAsset" (ngSubmit)="submitForm()" class="row">
+      <form [formGroup]="newAsset" (ngSubmit)="submitNewAsset()" class="row">
         <div class="form-group col-lg-3 col-md-12">
           <label>Title</label>
-          <input it="title" class="form-control" type="text" formControlName="title">
-          <div *ngIf="newAssetSubmitted && f.title.errors">
-            <div *ngIf="f.title.errors.required">Title is required</div>
+          <input id="title" class="form-control" type="text" formControlName="title">
+          <div *ngIf="newAssetSubmitted && newf.title.errors">
+            <div *ngIf="newf.title.errors.required">Title is required</div>
           </div>
         </div>
         <div class="form-group col-lg-3 col-md-12">
           <label>Ticker</label>
-          <input it="ticker" class="form-control" type="text" formControlName="ticker">
-          <div *ngIf="newAssetSubmitted && f.ticker.errors">
-            <div *ngIf="f.ticker.errors.required">Ticker is required</div>
+          <input id="ticker" class="form-control" type="text" formControlName="ticker">
+          <div *ngIf="newAssetSubmitted && newf.ticker.errors">
+            <div *ngIf="newf.ticker.errors.required">Ticker is required</div>
           </div>
         </div>
         <div class="form-group col-lg-3 col-md-12">
@@ -34,8 +21,8 @@
           <select formControlName="assetType" class="form-control">
             <option *ngFor="let type of assetTypes" [ngValue]="type.id">{{ type.name }}</option>
           </select>
-          <div *ngIf="newAssetSubmitted && f.assetType.errors">
-            <div *ngIf="f.assetType.errors.required">Asset type is required</div>
+          <div *ngIf="newAssetSubmitted && newf.assetType.errors">
+            <div *ngIf="newf.assetType.errors.required">Asset type is required</div>
           </div>
         </div>
         <div class="col-lg-3 col-md-12 submit-container">
@@ -44,6 +31,22 @@
       </form>
     </div>
   </div>
+  <div id="search-asset-container" class="row">
+    <div class="col-12">
+      <form [formGroup]="searchAsset" (ngSubmit)="submitSearchAsset()" class="row">
+        <div class="col-9">
+          <input id="search-string" class="form-control" type="text" formControlName="searchString">
+          <div *ngIf="searchAssetSubmitted && searchf.searchString.errors">
+            <div *ngIf="searchf.searchString.errors.required">Search string is required</div>
+          </div>
+        </div>
+        <div class="col-3 submit-container">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="all-assets-container" class=row>
     <div class="col-12">
       <table class="table table-hover">

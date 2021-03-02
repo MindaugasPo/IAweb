@@ -9,8 +9,10 @@ import { catchError, tap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiBaseUrl = 'http://localhost:49977/api';
-  private assetsUrl = this.apiBaseUrl + '/apiasset';
+  private apiBaseUrl = 'https://localhost:44329/apiv1';
+  private assetsUrl = this.apiBaseUrl + '/asset';
+  private assetsUrl_search = this.assetsUrl + '/search';
+  private assetsUrl_delete = this.assetsUrl + '/delete';
 
   constructor(
     private http: HttpClient
@@ -20,7 +22,7 @@ export class BackendService {
     return this.http.get<AssetDto[]>(this.assetsUrl)
       .pipe(
         catchError(this.handleError<AssetDto[]>('getAssets', []))
-      );;
+      );
   }
 
   createAsset(newAsset: AssetDto): Observable<AssetDto>{
@@ -30,8 +32,15 @@ export class BackendService {
       );
   }
 
+  searchAsset(searchString: string): Observable<AssetDto[]>{
+    return this.http.get<AssetDto[]>(this.assetsUrl_search + "/" + searchString)
+      .pipe(
+        catchError(this.handleError<AssetDto[]>('searchAsset', []))
+      );
+  }
+
   deleteAsset(id: string): Observable<{}> {
-    return this.http.delete<string>(this.assetsUrl + '?id=' + id)
+    return this.http.delete<string>(this.assetsUrl_delete + '/' + id)
       .pipe(
         catchError(this.handleError<AssetDto>('deleteAsset'))
     );

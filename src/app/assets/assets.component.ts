@@ -12,6 +12,7 @@ import { Validators } from '@angular/forms';
 export class AssetsComponent implements OnInit {
   backendAssets: AssetDto[] = [];
   newAssetSubmitted = false;
+  searchAssetSubmitted = false;
   assetTypes: AssetType[] = this.getAssetTypes();
 
   newAsset = new FormGroup({
@@ -19,7 +20,9 @@ export class AssetsComponent implements OnInit {
     ticker: new FormControl('', Validators.required),
     assetType: new FormControl(null, Validators.required)
   });
-  createCreated: Date = new Date;
+  searchAsset = new FormGroup({
+    searchString: new FormControl('', Validators.required)
+  });
 
   constructor(
     private backend: BackendService
@@ -30,7 +33,21 @@ export class AssetsComponent implements OnInit {
     this.backend.getAssets().subscribe(x => this.backendAssets = x);
   }
 
-  submitForm(): void {
+  submitSearchAsset(): void {
+    this.searchAssetSubmitted = true;
+    if(this.searchAsset.valid){
+      this.backend
+        .searchAsset(this.searchAsset.value.searchString)
+        .subscribe(
+          x => this.backendAssets = x,
+          err => console.error('search asset error: ' + err),
+          () => {
+            this.newAssetSubmitted = false;}
+        );
+    }
+  }
+
+  submitNewAsset(): void {
     this.newAssetSubmitted = true;
     if (this.newAsset.valid){
       this.backend
@@ -45,8 +62,11 @@ export class AssetsComponent implements OnInit {
     }
   }
 
-  get f(){
+  get newf(){
     return this.newAsset.controls;
+  }
+  get searchf(){
+    return this.searchAsset.controls;
   }
 
   getAssetTypes(): AssetType[]{
