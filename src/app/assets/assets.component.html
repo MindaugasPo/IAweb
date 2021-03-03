@@ -25,7 +25,8 @@
             <div *ngIf="newf.assetType.errors.required">Asset type is required</div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-12 submit-container">
+        <div class="form-group col-lg-3 col-md-12 submit-container">
+          <label class="placeholder">&nbsp;</label>
           <button type="submit" class="btn btn-primary new-asset" [disabled]="!newAsset.valid">Create new asset</button>
         </div>
       </form>
@@ -34,13 +35,13 @@
   <div id="search-asset-container" class="row">
     <div class="col-12">
       <form [formGroup]="searchAsset" (ngSubmit)="submitSearchAsset()" class="row">
-        <div class="col-9">
+        <div class="form-group col-lg-9 col-md-12">
           <input id="search-string" class="form-control" type="text" formControlName="searchString">
           <div *ngIf="searchAssetSubmitted && searchf.searchString.errors">
             <div *ngIf="searchf.searchString.errors.required">Search string is required</div>
           </div>
         </div>
-        <div class="col-3 submit-container">
+        <div class="form-group col-lg-3 col-md-12 submit-container">
           <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </form>

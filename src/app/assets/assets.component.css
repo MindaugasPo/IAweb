@@ -7,9 +7,20 @@
 .submit-container{
   text-align: center;
 }
-form button.new-asset {
-  margin-top: 30px;
-}
+
 form button {
-  width: 250px;
+  width: 225px;
+}
+@media screen and (min-width: 992px){
+
+
+  label.placeholder{
+    width: 225px;
+  }
+}
+
+#search-asset-container{
+  padding-top: 30px;
+  border-top: 5px solid #ced4da;
+
 }
