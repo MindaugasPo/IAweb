@@ -34,7 +34,7 @@
             </div>
             <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
               <label class="placeholder">&nbsp;</label>
-              <button type="submit" class="btn btn-primary edit-asset" [disabled]="true">Submit</button>
+              <button type="submit" class="btn btn-primary edit-asset" [disabled]="!newAsset.valid">Submit</button>
             </div>
             <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
               <label class="placeholder">&nbsp;</label>

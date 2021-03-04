@@ -52,15 +52,33 @@ export class AssetsComponent implements OnInit {
   submitNewAsset(): void {
     this.newAssetSubmitted = true;
     if (this.newAsset.valid){
-      this.backend
-        .createAsset(this.newAsset.value)
-        .subscribe(
-          x => this.backendAssets.push(x),
-          err => console.error('submit new asset error: ' + err),
-          () => {
-            this.newAsset.reset();
-            this.newAssetSubmitted = false;
-          });
+      if (this.editingAssetId){
+        this.backend
+          .updateAsset(this.newAsset.value)
+          .subscribe(
+            x => {
+              this.deleteFromBackendAssets(this.newAsset.value.id);
+              this.backendAssets.push(x)
+            },
+            err => console.error('submit new asset error: ' + err),
+            () => {
+              this.newAsset.reset();
+              this.newAssetSubmitted = false;
+              this.editingAssetId = "";
+            });
+
+      }
+      else{
+        this.backend
+          .createAsset(this.newAsset.value)
+          .subscribe(
+            x => this.backendAssets.push(x),
+            err => console.error('submit new asset error: ' + err),
+            () => {
+              this.newAsset.reset();
+              this.newAssetSubmitted = false;
+            });
+      }
     }
   }
 
@@ -87,10 +105,7 @@ export class AssetsComponent implements OnInit {
       () => {},
       err => console.error('delete asset error: ' + err),
       () => {
-        let ind = this.backendAssets.findIndex(x => x.id == id);
-        if (ind > -1){
-          this.backendAssets.splice(ind, 1);
-        }
+        this.deleteFromBackendAssets(id);
       }
     );
   }
@@ -107,5 +122,11 @@ export class AssetsComponent implements OnInit {
   cancelEditing(){
     this.newAsset.reset();
     this.editingAssetId = "";
+  }
+  deleteFromBackendAssets(id:string){
+    let ind = this.backendAssets.findIndex(x => x.id == id);
+    if (ind > -1){
+      this.backendAssets.splice(ind, 1);
+    }
   }
 }

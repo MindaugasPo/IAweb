@@ -13,6 +13,7 @@ export class BackendService {
   private assetsUrl = this.apiBaseUrl + '/asset';
   private assetsUrl_search = this.assetsUrl + '/search';
   private assetsUrl_delete = this.assetsUrl + '/delete';
+  private assetsUrl_update = this.assetsUrl + '/update';
 
   constructor(
     private http: HttpClient
@@ -29,6 +30,13 @@ export class BackendService {
     return this.http.post<AssetDto>(this.assetsUrl, newAsset, {})
       .pipe(
         catchError(this.handleError<AssetDto>('createAsset', {} as AssetDto))
+      );
+  }
+
+  updateAsset(newAsset: AssetDto): Observable<AssetDto>{
+    return this.http.post<AssetDto>(this.assetsUrl_update, newAsset, {})
+      .pipe(
+        catchError(this.handleError<AssetDto>('updateAsset', {} as AssetDto))
       );
   }
 
