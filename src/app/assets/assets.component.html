@@ -2,6 +2,7 @@
   <div id="create-asset-container" class="row">
     <div class="col-12">
       <form [formGroup]="newAsset" (ngSubmit)="submitNewAsset()" class="row">
+        <input id="id" type="text" formControName="id" class="d-none">
         <div class="form-group col-lg-3 col-md-12">
           <label>Title</label>
           <input id="title" class="form-control" type="text" formControlName="title">
@@ -25,9 +26,21 @@
             <div *ngIf="newf.assetType.errors.required">Asset type is required</div>
           </div>
         </div>
-        <div class="form-group col-lg-3 col-md-12 submit-container">
-          <label class="placeholder">&nbsp;</label>
-          <button type="submit" class="btn btn-primary new-asset" [disabled]="!newAsset.valid">Create new asset</button>
+        <div class="col-lg-3 col-md-12">
+          <div class="row">
+            <div *ngIf="!editingAssetId" class="form-group col-12 submit-container">
+              <label class="placeholder">&nbsp;</label>
+              <button type="submit" class="btn btn-primary" [disabled]="!newAsset.valid">Submit</button>
+            </div>
+            <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
+              <label class="placeholder">&nbsp;</label>
+              <button type="submit" class="btn btn-primary edit-asset" [disabled]="true">Submit</button>
+            </div>
+            <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
+              <label class="placeholder">&nbsp;</label>
+              <button class="btn btn-primary edit-asset" [disabled]="!newAsset.valid" (click)="cancelEditing()">Cancel</button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -67,7 +80,9 @@
             <td><span>{{ getAssetTypeName(asset.assetType) }}</span></td>
             <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
             <td>
-              <button type="button" class="btn btn-link" (click)="deleteAsset(asset.id)">Delete</button>
+              <button type="button" class="btn btn-link" (click)="editAsset(asset)">Edit</button>
+              <button type="button" class="btn btn-link" *ngIf="editingAssetId!=asset.id" (click)="deleteAsset(asset.id)">Delete</button>
+              <button type="button" class="btn btn-link" *ngIf="editingAssetId==asset.id" (click)="cancelEditing()">Cancel</button>
             </td>
           </tr>
         </tbody>

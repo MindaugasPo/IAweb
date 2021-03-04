@@ -11,9 +11,11 @@
 form button {
   width: 225px;
 }
-@media screen and (min-width: 992px){
+form button.edit-asset {
+  width: 100px;
+}
 
-
+@media (min-width: 992px){
   label.placeholder{
     width: 225px;
   }

@@ -14,8 +14,10 @@ export class AssetsComponent implements OnInit {
   newAssetSubmitted = false;
   searchAssetSubmitted = false;
   assetTypes: AssetType[] = this.getAssetTypes();
+  editingAssetId = "";
 
   newAsset = new FormGroup({
+    id: new FormControl(''),
     title: new FormControl('', Validators.required),
     ticker: new FormControl('', Validators.required),
     assetType: new FormControl(null, Validators.required)
@@ -91,5 +93,19 @@ export class AssetsComponent implements OnInit {
         }
       }
     );
+  }
+  editAsset(asset:AssetDto){
+    this.editingAssetId = asset.id;
+    this.newAsset.reset();
+    this.newAsset.patchValue({
+      id: asset.id,
+      title: asset.title,
+      ticker: asset.ticker,
+      assetType: asset.assetType
+    });
+  }
+  cancelEditing(){
+    this.newAsset.reset();
+    this.editingAssetId = "";
   }
 }
