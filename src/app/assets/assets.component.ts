@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../backend.service';
+import { BackendService } from '../services/backend.service';
 import { AssetDto, AssetType} from '../dto';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';

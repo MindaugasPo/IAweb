@@ -28,15 +28,15 @@
         </div>
         <div class="col-lg-3 col-md-12">
           <div class="row">
-            <div *ngIf="!editingAssetId" class="form-group col-12 submit-container">
+            <div *ngIf="!editingAssetId" class="form-group col-12">
               <label class="placeholder">&nbsp;</label>
               <button type="submit" class="btn btn-primary" [disabled]="!newAsset.valid">Submit</button>
             </div>
-            <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
+            <div *ngIf="editingAssetId" class="form-group col-6">
               <label class="placeholder">&nbsp;</label>
               <button type="submit" class="btn btn-primary edit-asset" [disabled]="!newAsset.valid">Submit</button>
             </div>
-            <div *ngIf="editingAssetId" class="form-group col-6 submit-container">
+            <div *ngIf="editingAssetId" class="form-group col-6">
               <label class="placeholder">&nbsp;</label>
               <button class="btn btn-primary edit-asset" [disabled]="!newAsset.valid" (click)="cancelEditing()">Cancel</button>
             </div>
@@ -69,7 +69,6 @@
             <th>Title</th>
             <th>Ticker</th>
             <th>Type</th>
-            <th>Created</th>
             <th></th>
           </tr>
         </thead>
@@ -78,7 +77,6 @@
             <td><span>{{ asset.title }}</span></td>
             <td><span>{{ asset.ticker }}</span></td>
             <td><span>{{ getAssetTypeName(asset.assetType) }}</span></td>
-            <td><span>{{ asset.createdDateUtc | date:'yyyy-MM-dd' }}</span></td>
             <td>
               <button type="button" class="btn btn-link" (click)="editAsset(asset)">Edit</button>
               <button type="button" class="btn btn-link" *ngIf="editingAssetId!=asset.id" (click)="deleteAsset(asset.id)">Delete</button>

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { AssetsComponent } from './assets/assets.component';
 import { HomeComponent } from './home/home.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainMenuComponent,
     AssetsComponent,
     HomeComponent,
-    TransactionsComponent,
     PortfolioComponent
   ],
   imports: [
